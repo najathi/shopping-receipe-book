@@ -1,5 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Recipe} from '../../recipe.model';
+import {RecipeService} from '../../recipe.service';
+import {ActivatedRoute, Params} from '@angular/router';
 
 @Component({
   selector: 'app-recipe-item',
@@ -9,17 +11,23 @@ import {Recipe} from '../../recipe.model';
 export class RecipeItemComponent implements OnInit {
 
   // @Input() recipe : {name: string, description: string, imagePath: string};
-  @Input() recipe : Recipe; // very easiest way
+  @Input() recipe : Recipe; // very easiest way get access data using model
 
-  @Output() recipeSelected = new EventEmitter<void>();
+  @Input() index:number;
 
-  constructor() { }
+  // @Output() recipeSelected = new EventEmitter<void>();
 
-  ngOnInit() {
-  }
 
-  onSelected(){
-    this.recipeSelected.emit();
-  }
+  /*constructor(private recipeService: RecipeService) { }*/
+
+
+  ngOnInit() {  }
+
+  /*onSelected(){
+    //this.recipeSelected.emit();
+
+    this.recipeService.recipeSelected.emit(this.recipe);
+
+  }*/
 
 }

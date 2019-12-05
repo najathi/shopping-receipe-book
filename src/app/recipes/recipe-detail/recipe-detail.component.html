@@ -1,9 +1,9 @@
 <div class="row">
-  <div class="col-xl-12">
+  <div class="col-xl-12 mb-2 mt-3">
     <img
       [src]="recipe.imagePath"
       alt="{{recipe.name}}"
-      src="img-fluid"
+      class="img-fluid"
       style="max-width: 300px;">
   </div>
 </div>
@@ -17,26 +17,28 @@
 <div class="row">
   <div class="col-xl-12">
     <div class="btn-group">
-      <button class="btn btn-primary dropdown-toggle">
+      <button type="button" class="btn btn-primary dropdown-toggle" [ngClass]="{show: toggle}" (click)="toggle = !toggle">
         Manage Recipe <span class="caret"></span>
       </button>
-      <ul class="dropdown-menu">
-        <li><a href="#">To Shopping List</a></li>
-        <li><a href="#">Edit Recipe</a></li>
-        <li><a href="#">Delete Recipe</a></li>
+      <ul class="dropdown-menu" [ngClass]="{show: toggle}">
+        <li class="dropdown-item"><a (click)="onAddToShoppingList()" style="cursor: pointer;">To Shopping List</a></li>
+        <li class="dropdown-item"><a style="cursor: pointer;" (click)="onEditRecipe()">Edit Recipe</a></li>
+        <li class="dropdown-item"><a style="cursor: pointer;" (click)="onDeleteRecipe()">Delete Recipe</a></li>
       </ul>
     </div>
   </div>
 </div>
 
 <div class="row">
-  <div class="col-xl-12">
+  <div class="col-xl-12 mt-3">
     {{recipe.description}}
   </div>
 </div>
 
 <div class="row">
-  <div class="col-xl-12">
-    Ingredients
+  <div class="col-md-6 mt-3">
+    <ul class="list-group">
+      <li class="list-group-item" *ngFor="let ingredient of recipe.ingredients;">{{ingredient.name}} - {{ingredient.amount}}</li>
+    </ul>
   </div>
 </div>
